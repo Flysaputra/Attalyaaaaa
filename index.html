@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise Card for My Love</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #fff7e6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+        .card {
+            width: 90%;
+            max-width: 600px;
+            background: linear-gradient(145deg, #ffefd5, #ffc0cb);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+        }
+        .question {
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            color: #ff6f91;
+        }
+        .input-container {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 1em;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            width: 80%;
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #ff6f91;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ff4081;
+        }
+        .warning {
+            color: #d9534f;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+        .message {
+            display: none;
+            font-size: 1.1em;
+            margin-top: 20px;
+        }
+        .final-message {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #555;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="question">Q1: Mingyu Lahir dimana?</div>
+        <div class="input-container">
+            <input type="text" id="answer" placeholder="Jawaban kamu">
+            <div class="warning" id="warning"></div>
+        </div>
+        <button id="submit">Submit</button>
+
+        <div class="message" id="message"></div>
+        <div class="final-message" id="final-message"></div>
+    </div>
+
+    <script>
+        const questions = [
+            "Mingyu Lahir dimana",
+            "Apa lagu Disney yang dinyanyikan oleh Elsa di Frozen?",
+            "Siapa karakter Disney yang bisa berbicara dengan hewan dan tinggal di hutan?",
+            "Apa nama film Disney tentang seorang cewe di kurung di menara?",
+            "Apa warna utama gaun Cinderella?",
+            "Apa nama boyband Korea yang punya lagu 'Rock With You'?",
+            "Siapa karakter Disney yang mengendarai karpet terbang?"
+        ];
+
+        const answers = [
+            "anyang",
+            "let it go",
+            "tarzan",
+            "tangled",
+            "biru",
+            "seventeen",
+            "aladdin"
+        ];
+
+        let currentQuestion = 0;
+
+        const questionEl = document.querySelector(".question");
+        const inputEl = document.querySelector("#answer");
+        const warningEl = document.querySelector("#warning");
+        const finalMessageEl = document.querySelector("#final-message");
+        const buttonEl = document.querySelector("#submit");
+
+        buttonEl.addEventListener("click", () => {
+            const userAnswer = inputEl.value.trim().toLowerCase();
+            
+            if (userAnswer === answers[currentQuestion]) {
+                currentQuestion++;
+
+                if (currentQuestion < questions.length) {
+                    questionEl.textContent = `Q${currentQuestion + 1}: ${questions[currentQuestion]}`;
+                    inputEl.value = "";
+                    warningEl.textContent = "";
+                } else {
+                    questionEl.style.display = "none";
+                    inputEl.style.display = "none";
+                    buttonEl.style.display = "none";
+
+                    finalMessageEl.innerHTML = `Happy birthday, my love.<br><br>
+                        As I sit here reflecting on all that you mean to me, I’m overwhelmed with gratitude and love.<br><br>
+                        Thank you for letting me be a part of your life once again, for allowing me to stand beside you as we celebrate another year of your beautiful existence. Each day with you feels like a gift, and today I’m reminded of just how lucky I am to share this life with you.<br><br>
+
+                        You are not just my girlfriend—you are the heart of my world, the one who makes everything brighter and more meaningful. Through every high and every low, you've been there, and I’ve been there for you. In all the quiet moments, the laughter, the challenges, and the triumphs, we’ve built something so special. Your love, your spirit, and your strength have touched my soul in ways I never knew possible.<br><br>
+
+                        I want you to know that my love for you goes beyond words, beyond the moments we share, and beyond the things we’ve been through. It’s in the way I look at you, in the way I feel about us, in the way my heart beats for you. You’ve taught me so much about love, patience, and commitment, and I am endlessly thankful for your presence in my life. I know life won’t always be perfect, but I also know that with you by my side, we can face anything.<br><br>
+
+                        Here’s to many more birthdays together, to years of laughter, growth, and deeper love. I will always stand by you, through every moment, because you are worth it all. I love you more than words could ever express, and I’m so thankful we get to walk through this life together, hand in hand, year after year.`;
+                }
+            } else {
+                warningEl.textContent = "Masa gatau sayanggg 😘 Ayo berrr kamu pasti bisa!";
+            }
+        });
+    </script>
+</body>
+</html>
